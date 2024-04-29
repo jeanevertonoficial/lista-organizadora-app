@@ -1,21 +1,21 @@
 import { StyleSheet, Text, View, Pressable, TouchableOpacity } from 'react-native';
-
 import { Fontisto } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { Header } from '../components/header';
+import MesAtual from '../components/mesAtual';
 
-export function Home() {
+export function Home({ navigation }) {
   return (
     <View style={styles.container}>
-      <Header/>
+      
+      <Header navigation={navigation}/>
 
       <View style={styles.content}>
-
         <View style={styles.box}>
           <Pressable style={styles.contentCabecalho}>
             <View style={styles.iconesBaseCabecalho}>
               <Fontisto name="shopping-pos-machine" size={24} color="#424242"/>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => navigation.navigate('NewItem')}>
                 <AntDesign name="plus" size={24} color="#424242"/>
               </TouchableOpacity>
             </View>
@@ -24,7 +24,7 @@ export function Home() {
         </View>
 
       </View>
-
+    <MesAtual/>
     </View>
   );
 }
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
   
   },
   content: {
-    flex:1,
+    flex: 5,
     paddingLeft: 14,
     paddingRight: 14,
     width: "100%"
