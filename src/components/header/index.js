@@ -1,30 +1,28 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { useNavigation } from '@react-navigation/native';
+import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
-export function Header() {
-  const navigation = useNavigation();
+export function Header({navigation}) {
 
-  return (
-    <SafeAreaView style={{ flex:1 }}>
-        <View style={styles.header}> 
-            <Text style={styles.title}>LISTA ORGANIZADORA</Text>
-            <TouchableOpacity onPress={() => navigation.navigate('newItem')}>
-                <Image
-                style={styles.logo}
-                source={require("./../../assests/logo.png")}
-                />
-            </TouchableOpacity>
-        </View>
-    </SafeAreaView>
-  )
+    return (
+        <SafeAreaView style={{flex: 1}}>
+            <View style={styles.header}>
+                <TouchableOpacity>
+                    <Text style={styles.title} onPress={() => navigation.navigate('Home')}>LISTA ORGANIZADORA</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('NewItem')}>
+                    <Image
+                        style={styles.logo}
+                        source={require("./../../assests/logo.png")}
+                    />
+                </TouchableOpacity>
+            </View>
+        </SafeAreaView>
+    )
 }
 
 const styles = StyleSheet.create({
-    constainer: {
-
-    },
+    constainer: {},
     header: {
         flex: 1,
         width: '100%',
