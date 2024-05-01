@@ -10,14 +10,25 @@ export default function NewItem({navigation}) {
     const [qtd, setQtd] = useState(0);
     const [valor, setValor] = useState('');
     const [nm, setNmItem] = useState('');
-    const {saveItem} = useStorage();
+    const {saveItem, getItem} = useStorage();
 
     async function cadastrarItem() {
-        await saveItem("@pass",{ nm, valor, qtd })
+        if (!nm || !valor || isNaN(qtd)) {
+            alert("Por favor, preencha todos os campos!");
+            return;
+        }
+
+        await saveItem("@pass", {nm, valor, qtd})
+
+        // Limpa os campos do formulário
+        setNmItem('');
+        setValor('');
+        setQtd(0);
     }
 
     return (
         <View style={styles.container}>
+
             <Header navigation={navigation}/>
 
             <View style={styles.content}>
@@ -31,31 +42,32 @@ export default function NewItem({navigation}) {
                             <Text style={styles.nomeCampo}>Nome</Text>
                             <TextInput
                                 value={nm}
-                                onChangeText={setNmItem}
                                 placeholder="ARROZ"/>
                         </View>
                         <View>
                             <Text style={styles.nomeCampo}>Valor</Text>
                             <TextInput
-                                value={valor}
-                                onChangeText={setValor}
+                                value={String(valor)}
                                 placeholder="R$ 00,00"
-                                keyboardType="numeric"/>
+                            />
                         </View>
                         <View>
                             <Text style={styles.nomeCampo}>Qtd</Text>
                             <TextInput
-                                onChangeText={setQtd}
-                                value={qtd}
+                                value={String(qtd)}
                                 placeholder="0"
-                                keyboardType="numeric"/>
+                                />
                         </View>
                     </SafeAreaView>
+
                     <TouchableOpacity style={styles.buttonAdd} onPress={cadastrarItem}>
                         <FontAwesome5 style={styles.btnIconAdd} name="plus" size={24} color="black"/>
                     </TouchableOpacity>
+
                 </View>
+
                 <ItemsCadastrados/>
+
             </View>
 
             <MesAtual/>
@@ -73,7 +85,7 @@ const styles = StyleSheet.create({
 
     },
     content: {
-        flex: 2,
+        flex: 4,
         paddingLeft: 14,
         paddingRight: 14,
         width: "100%"

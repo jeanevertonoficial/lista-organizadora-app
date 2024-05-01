@@ -28,26 +28,51 @@ const useStorage = () => {
     }
 
     // Remover algo do storage
-    const removeItem = async (key, item) => {
+    const removeItem = async (key, itemToRemove) => {
         try {
-            let items = await getItem(key)
-            let myPasswords = items.filter( (items) => {
-                return (items !== item)
-            })
+            let items = await getItem(key);
 
-            await AsyncStorage.setItem(key, JSON.stringify(myPasswords))
+            let updatedItems = items.filter(item => item.nm !== itemToRemove.nm);
 
-            return myPasswords
+            await AsyncStorage.setItem(key, JSON.stringify(updatedItems));
 
-        } catch(error) {
-            console.log("Erro ao remover", error)
+            return updatedItems;
+        } catch (error) {
+            console.log("Erro ao remover", error);
         }
-    }
+    };
+
+    const editeItem = async (key, editedItem) => {
+        try {
+            let items = await getItem(key);
+
+            // Encontra o índice do item a ser editado
+            const index = items.findIndex(item => item.nm === editedItem.nm);
+
+            // Se o item não existir, retorne
+            if (index === -1) {
+                console.log("Item não encontrado");
+                return items;
+            }
+
+            // Substitui o item antigo pelo item editado
+            items[index] = editedItem;
+
+            // Atualiza a lista de itens no AsyncStorage
+            await AsyncStorage.setItem(key, JSON.stringify(items));
+
+            return items;
+        } catch (error) {
+            console.log("Erro ao editar", error);
+        }
+    };
+
 
     return {
         getItem,
         saveItem,
-        removeItem
+        removeItem,
+        editeItem
     }
 }
 

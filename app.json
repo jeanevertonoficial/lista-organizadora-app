@@ -1,34 +1,44 @@
 {
   "expo": {
-    "name": "Lista Organizadora",
-    "slug": "Lista Organizadora",
+    "name": "AppListaOrganizadora",
+    "slug": "AppListaOrganizadora",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
-    "scheme": "Lista Organizadora",
+    "scheme": "AppListaOrganizadora",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/logo.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#212121"
     },
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.jeanevertonoficial.AppListaOrganizadora"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
+        "backgroundColor": "#212121"
+      },
+      "package": "com.jeanevertonoficial.AppListaOrganizadora"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
       "expo-router"
-    ]
+    ],
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "0d915a9d-847b-4d36-a9f0-5d798ae5f790"
+      }
+    }
   }
 }
