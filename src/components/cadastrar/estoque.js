@@ -6,23 +6,20 @@ import {FontAwesome5, Fontisto} from "@expo/vector-icons";
 import useStorage from "../../hooks/useStorage";
 import ItemsCadastrados from "./itemsCadastrados";
 
-export default function NewItem({navigation}) {
+export default function Estoque({navigation}) {
     const [qtd, setQtd] = useState(0);
-    const [valor, setValor] = useState('');
     const [nm, setNmItem] = useState('');
-    const {saveItem, getItem} = useStorage();
+    const {saveItem} = useStorage();
 
     async function cadastrarItem() {
-        if (!nm || !valor || isNaN(qtd)) {
+        if (!nm || isNaN(qtd)) {
             alert("Por favor, preencha todos os campos!");
             return;
         }
 
-        await saveItem("@pass", {nm, valor, qtd})
+        await saveItem("@estoque", {nm, qtd})
 
-        // Limpa os campos do formulário
         setNmItem('');
-        setValor('');
         setQtd(0);
     }
 
@@ -35,7 +32,7 @@ export default function NewItem({navigation}) {
                 <View style={styles.box}>
                     <View style={styles.baseTitulo}>
                         <Fontisto name="shopping-pos-machine" size={24} color="#424242"/>
-                        <Text style={styles.titulo}>Cadastrar novo item</Text>
+                        <Text style={styles.titulo}>Cadastrar novo produto</Text>
                     </View>
                     <SafeAreaView style={styles.inputs}>
                         <View>
@@ -44,14 +41,6 @@ export default function NewItem({navigation}) {
                                 value={nm}
                                 onChangeText={setNmItem}
                                 placeholder="ARROZ"/>
-                        </View>
-                        <View>
-                            <Text style={styles.nomeCampo}>Valor</Text>
-                            <TextInput
-                                value={String(valor)}
-                                onChangeText={setValor}
-                                placeholder="R$ 00,00"
-                            />
                         </View>
                         <View>
                             <Text style={styles.nomeCampo}>Qtd</Text>
@@ -69,7 +58,7 @@ export default function NewItem({navigation}) {
 
                 </View>
 
-                <ItemsCadastrados tipoLista="item"/>
+                <ItemsCadastrados tipoLista="estoque"/>
 
             </View>
 

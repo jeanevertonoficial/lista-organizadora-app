@@ -10,7 +10,7 @@ export function Header({navigation}) {
                 <TouchableOpacity>
                     <Text style={styles.title} onPress={() => navigation.navigate('Home')}>LISTA ORGANIZADORA</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => navigation.navigate('NewItem')}>
+                <TouchableOpacity onPress={() => navigation.navigate('Estoque')}>
                     <Image
                         style={styles.logo}
                         source={require("./../../assests/logo.png")}
