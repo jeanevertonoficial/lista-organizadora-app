@@ -11,20 +11,23 @@ export default function Router() {
     return (
         <NavigationContainer>
             <Stack.Navigator initialRouteName="Home">
-                <Stack.Screen name="Home" component={Home}
-                              options={{
-                                  headerShown: false,
-                              }}
+                <Stack.Screen
+                    name="Home" component={Home}
+                    options={{
+                        headerShown: false,
+                    }}
                 />
-                <Stack.Screen name="NewItem" component={NewItem}
-                              options={{
-                                  headerShown: false,
-                              }}
+                <Stack.Screen
+                    name="NewItem" component={NewItem}
+                    options={{
+                        headerShown: false,
+                    }}
                 />
-                <Stack.Screen name="Estoque" component={Estoque}
-                              options={{
-                                  headerShown: false,
-                              }}
+                <Stack.Screen
+                    name="Estoque" component={Estoque}
+                    options={{
+                        headerShown: false,
+                    }}
                 />
             </Stack.Navigator>
         </NavigationContainer>

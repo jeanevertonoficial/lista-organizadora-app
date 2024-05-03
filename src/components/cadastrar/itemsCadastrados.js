@@ -4,7 +4,7 @@ import useStorage from "../../hooks/useStorage";
 import {useEffect, useState} from "react";
 import {useIsFocused} from "@react-navigation/native";
 
-export default function ItemsCadastrados({ tipoLista }) {
+export default function ItemsCadastrados({tipoLista}) {
     const [items, setItemNew] = useState([])
 
     const focused = useIsFocused()
@@ -13,11 +13,12 @@ export default function ItemsCadastrados({ tipoLista }) {
 
     useEffect(() => {
         async function loadItems() {
-             const chave = (tipoLista == "item") ? '@pass' : '@estoque'
-                const items = await getItem(`${chave}`)
-                const sortedItems = items.sort((a, b) => a.nm.localeCompare(b.nm));
-                setItemNew(sortedItems)
+            const chave = (tipoLista == "item") ? '@pass' : '@estoque'
+            const items = await getItem(`${chave}`)
+            const sortedItems = items.sort((a, b) => a.nm.localeCompare(b.nm));
+            setItemNew(sortedItems)
         }
+
         loadItems()
     }, [focused]);
 
